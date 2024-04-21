@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/core/http_client.dart';
+import '/core/socket_client.dart';
 
 class ButtonsLayout extends StatelessWidget {
   const ButtonsLayout({super.key});
@@ -36,7 +36,7 @@ class ButtonsLayout extends StatelessWidget {
       child: Column(
         children: [
           RawMaterialButton(
-            onPressed: () => HttpClient.sendCode(target, button['code']),
+            onPressed: () => SocketClient.sendCode(target, button['code']),
             fillColor: Colors.grey,
             shape: const CircleBorder(),
             constraints: const BoxConstraints(minWidth: 50, minHeight: 50),
