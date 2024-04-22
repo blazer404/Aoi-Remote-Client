@@ -1,4 +1,4 @@
-name: tsrc_client
+name: aoi_remote
 description: "Media controls"
 publish_to: 'none'
 version: 1.0.0+1
@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.6
   http: ^0.13.3
+  rename_app: ^1.3.2
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -19,3 +21,23 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - lib/assets/
+    - lib/assets/img/
+
+# run this to generate icons
+#   flutter pub run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/img/app_icon.png"
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: "lib/assets/img/app_icon.png"
+  windows:
+    generate: true
+    image_path: "lib/assets/img/app_icon.png"
+  macos:
+    generate: true
+    image_path: "lib/assets/img/app_icon.png"

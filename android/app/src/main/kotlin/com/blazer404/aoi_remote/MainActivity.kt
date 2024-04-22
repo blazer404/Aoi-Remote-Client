@@ -1,4 +1,4 @@
-package com.blazer404.tsrc_client.tsrc_client
+package com.blazer404.aoi_remote
 
 import io.flutter.embedding.android.FlutterActivity
 

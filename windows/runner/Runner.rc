@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.blazer404.tsrc_client" "\0"
-            VALUE "FileDescription", "tsrc_client" "\0"
+            VALUE "CompanyName", "com.blazer404.aoi_remote" "\0"
+            VALUE "FileDescription", "aoi_remote" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "tsrc_client" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 com.blazer404.tsrc_client. All rights reserved." "\0"
-            VALUE "OriginalFilename", "tsrc_client.exe" "\0"
-            VALUE "ProductName", "tsrc_client" "\0"
+            VALUE "InternalName", "aoi_remote" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 com.blazer404.aoi_remote. All rights reserved." "\0"
+            VALUE "OriginalFilename", "aoi_remote.exe" "\0"
+            VALUE "ProductName", "aoi_remote" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
