@@ -12,52 +12,81 @@ class MpcPage extends StatelessWidget {
   }
 
   Widget _setBody() {
-    return Center(
+    return Padding(
+      padding: EdgeInsets.only(bottom: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          Text(
+            'Управление ' + 'mpc-hc'.toUpperCase(),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ),
+          ButtonsColumn(
+            items: [
+              {'code': MediaPlayer.MPC_EXIT, 'icon': Icons.power_settings_new_outlined, 'size': 40},
+            ],
+            target: MediaPlayer.MPC,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 5),
+                    child: Text('sub'.toUpperCase()),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white10,
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                    child: const ButtonsColumn(
+                      items: [
+                        {'code': MediaPlayer.MPC_SUB_PREV, 'icon': Icons.keyboard_arrow_up_outlined},
+                        {'code': MediaPlayer.MPC_SUN_ON_OFF, 'icon': Icons.subtitles_off_outlined},
+                        {'code': MediaPlayer.MPC_SUB_NEXT, 'icon': Icons.keyboard_arrow_down_outlined},
+                      ],
+                      target: MediaPlayer.MPC,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 5),
+                    child: Text('audio'.toUpperCase()),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white10,
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                    child: const ButtonsColumn(
+                      items: [
+                        {'code': MediaPlayer.MPC_AUDIO_PREV, 'icon': Icons.keyboard_arrow_up_outlined},
+                        {'code': MediaPlayer.MPC_AUDIO_ON_OFF, 'icon': Icons.volume_off_outlined},
+                        {'code': MediaPlayer.MPC_AUDIO_NEXT, 'icon': Icons.keyboard_arrow_down_outlined},
+                      ],
+                      target: MediaPlayer.MPC,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
           const Column(
             children: [
               ButtonsRow(
                 items: [
-                  {'code': MediaPlayer.MPC_EXIT, 'icon': Icons.close_outlined},
-                  {'code': MediaPlayer.MPC_CLOSE, 'icon': Icons.eject_outlined},
+                  {'code': MediaPlayer.MPC_CLOSE, 'icon': Icons.close_outlined},
                   {'code': MediaPlayer.MPC_STOP, 'icon': Icons.stop_outlined},
                   {'code': MediaPlayer.MPC_PLAY_PAUSE, 'icon': Icons.play_arrow_outlined},
                   {'code': MediaPlayer.MPC_FULLSCREEN, 'icon': Icons.fullscreen_outlined},
                 ],
                 target: MediaPlayer.MPC,
-              ),
-            ],
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  Text('Субтитры'),
-                  ButtonsRow(
-                    items: [
-                      {'code': MediaPlayer.MPC_SUB_PREV, 'icon': Icons.keyboard_arrow_left_outlined},
-                      {'code': MediaPlayer.MPC_SUN_ON_OFF, 'icon': Icons.subtitles_off_outlined},
-                      {'code': MediaPlayer.MPC_SUB_NEXT, 'icon': Icons.keyboard_arrow_right_outlined},
-                    ],
-                    target: MediaPlayer.MPC,
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Text('Аудио-дорожки'),
-                  ButtonsRow(
-                    items: [
-                      {'code': MediaPlayer.MPC_AUDIO_PREV, 'icon': Icons.keyboard_arrow_left_outlined},
-                      {'code': MediaPlayer.MPC_AUDIO_NEXT, 'icon': Icons.keyboard_arrow_right_outlined},
-                    ],
-                    target: MediaPlayer.MPC,
-                  ),
-                ],
               ),
             ],
           ),
@@ -76,39 +105,49 @@ class MpcPage extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white10,
-                  borderRadius: BorderRadius.circular(999),
-                ),
-                child: const ButtonsColumn(
-                  items: [
-                    {'code': MediaPlayer.MPC_VOL_UP, 'icon': Icons.add_outlined},
-                    {'code': MediaPlayer.MPC_VOL_DOWN, 'icon': Icons.remove_outlined},
-                  ],
-                  target: MediaPlayer.MPC,
-                ),
-              ),
-              const ButtonsColumn(
-                items: [
-                  {'code': MediaPlayer.MPC_AUDIO_ON_OFF, 'icon': Icons.volume_off_outlined},
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 5),
+                    child: Text('vol'.toUpperCase()),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white10,
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                    child: const ButtonsColumn(
+                      items: [
+                        {'code': MediaPlayer.MPC_VOL_UP, 'icon': Icons.add_outlined},
+                        {'code': MediaPlayer.MPC_VOL_DOWN, 'icon': Icons.remove_outlined},
+                      ],
+                      target: MediaPlayer.MPC,
+                    ),
+                  ),
                 ],
-                target: MediaPlayer.MPC,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white10,
-                  borderRadius: BorderRadius.circular(999),
-                ),
-                child: const ButtonsColumn(
-                  items: [
-                    {'code': MediaPlayer.MPC_NEXT, 'icon': Icons.keyboard_arrow_up_outlined},
-                    {'code': MediaPlayer.MPC_PREV, 'icon': Icons.keyboard_arrow_down_outlined},
-                  ],
-                  target: MediaPlayer.MPC,
-                ),
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 5),
+                    child: Text('file'.toUpperCase()),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white10,
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                    child: const ButtonsColumn(
+                      items: [
+                        {'code': MediaPlayer.MPC_NEXT, 'icon': Icons.keyboard_arrow_up_outlined},
+                        {'code': MediaPlayer.MPC_PREV, 'icon': Icons.keyboard_arrow_down_outlined},
+                      ],
+                      target: MediaPlayer.MPC,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

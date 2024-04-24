@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 import '/core/socket_client.dart';
 
 class ButtonToList extends StatelessWidget {
@@ -9,19 +10,24 @@ class ButtonToList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final buttonSize = button.containsKey('size') ? button['size']?.toDouble() : 50.0;
+    final iconSize = buttonSize - 10;
+
     return Container(
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           RawMaterialButton(
-            onPressed: () => SocketClient.sendCode(target, button['code']),
-            fillColor: Colors.grey,
+            onPressed: () => {
+              Vibrate.feedback(FeedbackType.medium),
+              SocketClient.sendCode(target, button['code']),
+            },
             shape: const CircleBorder(),
-            constraints: const BoxConstraints(minWidth: 50, minHeight: 50),
+            constraints: BoxConstraints(minWidth: buttonSize, minHeight: buttonSize),
             child: Icon(
-              button['icon'],
-              color: Colors.black,
-              size: 40,
+              button['icon'] is IconData ? button['icon'] : Icons.error,
+              color: button['color'] is Color ? button['color'] : Colors.white70,
+              size: iconSize,
             ),
           ),
         ],

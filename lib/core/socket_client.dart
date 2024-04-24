@@ -17,7 +17,7 @@ class SocketClient {
     await socket.flush();
 
     socket.listen(
-      (List<int> data) {
+      (data) {
         String response = utf8.decode(data);
         if (kDebugMode) print('Ответ от сервера: $response');
       },
