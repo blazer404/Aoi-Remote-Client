@@ -1,18 +1,21 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:aoi_remote/core/ServerSettings.dart';
 
 class SocketClient {
-  static Future<void> sendCode(dynamic target, dynamic command) async {
-    //todo need set this variable from settings
-    // and set their on clsss constructor
-    const token = '12345678';
-    const url = '192.168.88.100';
-    const port = 1337;
+  static Future<void> sendCommand(dynamic target, dynamic command) async {
+    await ServerSettings.load();
+    String ip = ServerSettings.ip;
+    String port = ServerSettings.port;
+    String token = ServerSettings.token;
+
+    if (ip.isEmpty || port.isEmpty || token.isEmpty) {
+      return Future.error('Check connection settings');
+    }
 
     final request = 'T=$target&C=$command&P=$token';
-
-    Socket socket = await Socket.connect(url, port);
+    Socket socket = await Socket.connect(ip, int.parse(port));
     socket.writeln(request);
     await socket.flush();
 

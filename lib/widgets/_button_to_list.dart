@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
-import '/core/socket_client.dart';
+import 'package:aoi_remote/core/SocketClient.dart';
+import 'package:aoi_remote/widgets/ErrorDialogWidget.dart';
 
 class ButtonToList extends StatelessWidget {
   final String target;
@@ -13,6 +14,17 @@ class ButtonToList extends StatelessWidget {
     final buttonSize = button.containsKey('size') ? button['size']?.toDouble() : 50.0;
     final iconSize = buttonSize - 10;
 
+    void _sendCommand() {
+      SocketClient.sendCommand(target, button['code']).catchError((error) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ErrorDialogWidget(errorText: error.toString());
+          },
+        );
+      });
+    }
+
     return Container(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -20,7 +32,7 @@ class ButtonToList extends StatelessWidget {
           RawMaterialButton(
             onPressed: () => {
               Vibrate.feedback(FeedbackType.medium),
-              SocketClient.sendCode(target, button['code']),
+              _sendCommand(),
             },
             shape: const CircleBorder(),
             constraints: BoxConstraints(minWidth: buttonSize, minHeight: buttonSize),

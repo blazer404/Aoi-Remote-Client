@@ -1,6 +1,6 @@
+import 'package:aoi_remote/view/IndexPage.dart';
 import 'package:flutter/material.dart';
-import '/ui/view/index.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(IndexPage());
 }
