@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-class FormatterHelper {
+class Utils {
   static TextInputFormatter decimalFilter() {
     return FilteringTextInputFormatter.digitsOnly;
   }

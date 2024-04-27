@@ -7,4 +7,7 @@ class AppTheme {
     ),
     scaffoldBackgroundColor: Colors.black,
   );
+
+  static Color textColor = Colors.white70;
+  static Color accentColor = Color.fromRGBO(76, 175, 80, 1);
 }

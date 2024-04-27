@@ -1,6 +1,7 @@
+import 'package:aoi_remote/core/AppTheme.dart';
 import 'package:aoi_remote/view/AimpPage.dart';
-import 'package:flutter/material.dart';
 import 'package:aoi_remote/view/MpcPage.dart';
+import 'package:flutter/material.dart';
 
 class PagesSlider extends StatefulWidget {
   @override
@@ -37,7 +38,7 @@ class _PagesSliderState extends State<PagesSlider> {
               margin: EdgeInsets.symmetric(horizontal: 4.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: currentPage == index ? Color.fromRGBO(76, 175, 80, 1) : Colors.grey,
+                color: currentPage == index ? AppTheme.accentColor : Colors.grey,
               ),
             ),
           ),

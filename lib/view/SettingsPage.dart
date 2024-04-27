@@ -1,9 +1,10 @@
+import 'package:aoi_remote/core/AppTheme.dart';
+import 'package:aoi_remote/core/ServerSettings.dart';
+import 'package:aoi_remote/helpers/Utils.dart';
+import 'package:aoi_remote/helpers/IpAddressInputFormatter.dart';
+import 'package:aoi_remote/widgets/ErrorDialogWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:aoi_remote/helpers/FormatterHelper.dart';
-import 'package:aoi_remote/helpers/IpAddressInputFormatter.dart';
-import 'package:aoi_remote/core/ServerSettings.dart';
-import 'package:aoi_remote/widgets/ErrorDialogWidget.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -15,17 +16,11 @@ class _SettingsPageState extends State<SettingsPage> {
   final TextEditingController portController = TextEditingController();
   final TextEditingController tokenController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration.zero, () async {
-      await ServerSettings.load();
-      setState(() {
-        ipController.text = ServerSettings.ip ?? '';
-        portController.text = int.tryParse(ServerSettings.port) != null ? ServerSettings.port : '';
-        tokenController.text = ServerSettings.token ?? '';
-      });
-    });
+  Future<void> _loadSettings() async {
+    await ServerSettings.load();
+    ipController.text = ServerSettings.ip ?? '';
+    portController.text = (int.tryParse(ServerSettings.port) != null) ? ServerSettings.port : '';
+    tokenController.text = ServerSettings.token ?? '';
   }
 
   void _saveSetting() {
@@ -44,10 +39,24 @@ class _SettingsPageState extends State<SettingsPage> {
       return;
     }
     ServerSettings.save();
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _loadSettings(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return buildPage();
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
+
+  Widget buildPage() {
     return Scaffold(
       appBar: AppBar(title: Text('Settings')),
       body: Padding(
@@ -59,36 +68,42 @@ class _SettingsPageState extends State<SettingsPage> {
               controller: ipController,
               inputFormatters: [
                 LengthLimitingTextInputFormatter(15),
-                FormatterHelper.ipAddressFilter(),
+                Utils.ipAddressFilter(),
                 IpAddressInputFormatter()
               ],
               keyboardType: TextInputType.numberWithOptions(decimal: true),
-              decoration: InputDecoration(
-                labelText: 'IP Address',
-              ),
+              decoration: InputDecoration(labelText: 'IP Address'),
             ),
             TextField(
               controller: portController,
-              decoration: InputDecoration(
-                labelText: 'Port',
-              ),
+              decoration: InputDecoration(labelText: 'Port'),
               inputFormatters: [
                 LengthLimitingTextInputFormatter(5),
-                FormatterHelper.decimalFilter(),
+                Utils.decimalFilter(),
               ],
               keyboardType: TextInputType.number,
             ),
             TextField(
               controller: tokenController,
-              decoration: InputDecoration(
-                labelText: 'Auth token',
-              ),
+              decoration: InputDecoration(labelText: 'Auth token'),
             ),
             SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: _saveSetting,
-              child: Text('Save'),
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  onPressed: _saveSetting,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.save_outlined, color: AppTheme.textColor, size: 20),
+                      SizedBox(width: 8),
+                      Text('Save', style: TextStyle(color: AppTheme.textColor)),
+                    ],
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

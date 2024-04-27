@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_vibrate/flutter_vibrate.dart';
+import 'package:aoi_remote/core/AppTheme.dart';
 import 'package:aoi_remote/core/SocketClient.dart';
 import 'package:aoi_remote/widgets/ErrorDialogWidget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 
 class ButtonToList extends StatelessWidget {
   final String target;
@@ -38,7 +39,7 @@ class ButtonToList extends StatelessWidget {
             constraints: BoxConstraints(minWidth: buttonSize, minHeight: buttonSize),
             child: Icon(
               button['icon'] is IconData ? button['icon'] : Icons.error,
-              color: button['color'] is Color ? button['color'] : Colors.white70,
+              color: button['color'] is Color ? button['color'] : AppTheme.textColor,
               size: iconSize,
             ),
           ),
