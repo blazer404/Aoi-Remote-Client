@@ -1,5 +1,3 @@
-import 'package:aoi_remote/const/AimpConst.dart';
-import 'package:aoi_remote/widgets/AppBarWidget.dart';
 import 'package:flutter/material.dart';
 
 class AimpPage extends StatefulWidget {
@@ -10,10 +8,9 @@ class AimpPage extends StatefulWidget {
 class _AimpPageState extends State<AimpPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarWidget(title: AimpConst.TITLE, icon: AimpConst.ICON),
-      body: Padding(
-        padding: EdgeInsets.only(bottom: 20),
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Center(
         child: const Text('in progress...'),
       ),
     );
