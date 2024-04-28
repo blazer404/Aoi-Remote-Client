@@ -5,7 +5,6 @@ import 'package:aoi_remote/view/aimp/AimpPage.dart';
 import 'package:aoi_remote/view/mpc/MpcPage.dart';
 import 'package:aoi_remote/widgets/AppBarWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/physics.dart';
 
 class IndexPageSlider extends StatefulWidget {
   @override

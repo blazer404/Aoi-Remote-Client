@@ -10,5 +10,5 @@ class AppTheme {
 
   static const Color textColor = Colors.white70;
   static const Color accentColor = Color.fromRGBO(76, 175, 80, 1);
-  static const Color controlBackgroundColor = Colors.white10;
+  static const Color controlBackgroundColor = Color.fromRGBO(33, 33, 33, 1.0);
 }

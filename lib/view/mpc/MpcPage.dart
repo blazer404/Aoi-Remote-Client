@@ -1,6 +1,6 @@
 import 'package:aoi_remote/const/MpcConst.dart';
-import 'package:aoi_remote/widgets/MediaControlButtonWidget.dart';
-import 'package:aoi_remote/widgets/MediaControlCircleWidget.dart';
+import 'package:aoi_remote/widgets/CircleButtonWidget.dart';
+import 'package:aoi_remote/widgets/CirclePanelWidget.dart';
 import 'package:flutter/material.dart';
 
 class MpcPage extends StatefulWidget {
@@ -21,28 +21,28 @@ class _MpcPageState extends State<MpcPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MediaControlButtonWidget(
+                  CircleButtonWidget(
                     target: MpcConst.NAME,
                     command: MpcConst.EXIT,
                     icon: Icons.power_settings_new_outlined,
                     iconSize: 30.0,
                   ),
                   SizedBox(width: 20),
-                  MediaControlButtonWidget(
+                  CircleButtonWidget(
                     target: MpcConst.NAME,
                     command: MpcConst.CLOSE,
                     icon: Icons.close_outlined,
                     iconSize: 30.0,
                   ),
                   SizedBox(width: 20),
-                  MediaControlButtonWidget(
+                  CircleButtonWidget(
                     target: MpcConst.NAME,
                     command: MpcConst.STOP,
                     icon: Icons.stop_outlined,
                     iconSize: 30.0,
                   ),
                   SizedBox(width: 20),
-                  MediaControlButtonWidget(
+                  CircleButtonWidget(
                     target: MpcConst.NAME,
                     command: MpcConst.FULLSCREEN,
                     icon: Icons.fullscreen_outlined,
@@ -68,19 +68,19 @@ class _MpcPageState extends State<MpcPage> {
                         ),
                         child: Row(
                           children: [
-                            MediaControlButtonWidget(
+                            CircleButtonWidget(
                               target: MpcConst.NAME,
                               command: MpcConst.SUB_PREV,
                               icon: Icons.keyboard_arrow_left_outlined,
                               iconSize: 35.0,
                             ),
-                            MediaControlButtonWidget(
+                            CircleButtonWidget(
                               target: MpcConst.NAME,
                               command: MpcConst.SUN_ON_OFF,
                               icon: Icons.subtitles_off_outlined,
                               iconSize: 35.0,
                             ),
-                            MediaControlButtonWidget(
+                            CircleButtonWidget(
                               target: MpcConst.NAME,
                               command: MpcConst.SUB_NEXT,
                               icon: Icons.keyboard_arrow_right_outlined,
@@ -103,19 +103,19 @@ class _MpcPageState extends State<MpcPage> {
                         ),
                         child: Row(
                           children: [
-                            MediaControlButtonWidget(
+                            CircleButtonWidget(
                               target: MpcConst.NAME,
                               command: MpcConst.AUDIO_PREV,
                               icon: Icons.keyboard_arrow_left_outlined,
                               iconSize: 35.0,
                             ),
-                            MediaControlButtonWidget(
+                            CircleButtonWidget(
                               target: MpcConst.NAME,
                               command: MpcConst.AUDIO_ON_OFF,
                               icon: Icons.volume_off_outlined,
                               iconSize: 35.0,
                             ),
-                            MediaControlButtonWidget(
+                            CircleButtonWidget(
                               target: MpcConst.NAME,
                               command: MpcConst.AUDIO_NEXT,
                               icon: Icons.keyboard_arrow_right_outlined,
@@ -129,7 +129,8 @@ class _MpcPageState extends State<MpcPage> {
                 ],
               ),
               SizedBox(height: 35),
-              MediaControlCircleWidget(target: MpcConst.NAME),
+//              MediaControlCircleWidget(target: MpcConst.NAME),
+              CirclePanelWidget(target: MpcConst.NAME),
               SizedBox(height: 35),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -145,25 +146,25 @@ class _MpcPageState extends State<MpcPage> {
                         ),
                         child: Row(
                           children: [
-                            MediaControlButtonWidget(
+                            CircleButtonWidget(
                               target: MpcConst.NAME,
                               command: MpcConst.JUMP_BACKWARD_LARGE,
                               icon: Icons.replay_30_outlined,
                             ),
                             SizedBox(width: 20),
-                            MediaControlButtonWidget(
+                            CircleButtonWidget(
                               target: MpcConst.NAME,
                               command: MpcConst.JUMP_BACKWARD_MEDIUM,
                               icon: Icons.replay_5_outlined,
                             ),
                             SizedBox(width: 20),
-                            MediaControlButtonWidget(
+                            CircleButtonWidget(
                               target: MpcConst.NAME,
                               command: MpcConst.JUMP_FORWARD_MEDIUM,
                               icon: Icons.forward_5_outlined,
                             ),
                             SizedBox(width: 20),
-                            MediaControlButtonWidget(
+                            CircleButtonWidget(
                               target: MpcConst.NAME,
                               command: MpcConst.JUMP_FORWARD_LARGE,
                               icon: Icons.forward_30_outlined,

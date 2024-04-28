@@ -4,14 +4,14 @@ import 'package:aoi_remote/widgets/ErrorDialogWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 
-class MediaControlButtonWidget extends StatefulWidget {
+class CircleButtonWidget extends StatefulWidget {
   final String target;
   final int command;
   final IconData icon;
   final double iconSize;
   final Color iconColor;
 
-  const MediaControlButtonWidget({
+  const CircleButtonWidget({
     super.key,
     required this.target,
     required this.command,
@@ -21,10 +21,10 @@ class MediaControlButtonWidget extends StatefulWidget {
   });
 
   @override
-  _MediaControlButtonWidgetState createState() => _MediaControlButtonWidgetState();
+  _CircleButtonWidgetWidgetState createState() => _CircleButtonWidgetWidgetState();
 }
 
-class _MediaControlButtonWidgetState extends State<MediaControlButtonWidget> {
+class _CircleButtonWidgetWidgetState extends State<CircleButtonWidget> {
   @override
   Widget build(BuildContext context) {
     final buttonSize = widget.iconSize + 10;
@@ -47,7 +47,6 @@ class _MediaControlButtonWidgetState extends State<MediaControlButtonWidget> {
       },
       shape: const CircleBorder(),
       constraints: BoxConstraints(minWidth: buttonSize, minHeight: buttonSize),
-      // fillColor: Colors.green,
       focusColor: Colors.transparent,
       child: Icon(widget.icon, color: widget.iconColor, size: widget.iconSize),
     );
