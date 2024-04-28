@@ -1,4 +1,4 @@
-import 'package:aoi_remote/view/SettingsPage.dart';
+import 'package:aoi_remote/view/settings/SettingsPage.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {

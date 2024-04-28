@@ -1,6 +1,13 @@
-import 'package:aoi_remote/view/IndexPage.dart';
+import 'package:aoi_remote/view/index/IndexPage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(IndexPage());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  runApp(
+    IndexPage(prefs: prefs),
+  );
 }

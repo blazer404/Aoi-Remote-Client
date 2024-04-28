@@ -1,14 +1,14 @@
 import 'package:aoi_remote/core/AppTheme.dart';
-import 'package:aoi_remote/view/AimpPage.dart';
-import 'package:aoi_remote/view/MpcPage.dart';
+import 'package:aoi_remote/view/aimp/AimpPage.dart';
+import 'package:aoi_remote/view/mpc/MpcPage.dart';
 import 'package:flutter/material.dart';
 
-class PagesSlider extends StatefulWidget {
+class IndexPageSlider extends StatefulWidget {
   @override
-  _PagesSliderState createState() => _PagesSliderState();
+  _IndexPageSliderState createState() => _IndexPageSliderState();
 }
 
-class _PagesSliderState extends State<PagesSlider> {
+class _IndexPageSliderState extends State<IndexPageSlider> {
   final List<Widget> pages = [
     MpcPage(),
     AimpPage(),

@@ -1,22 +1,24 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:aoi_remote/core/ServerSettings.dart';
+import 'package:aoi_remote/const/SettingsConst.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SocketClient {
   static Future<void> sendCommand(dynamic target, dynamic command) async {
-    await ServerSettings.load();
-    String ip = ServerSettings.ip;
-    String port = ServerSettings.port;
-    String token = ServerSettings.token;
+    //todo переписать на интерфейс
+    final prefs = await SharedPreferences.getInstance();
+    String? ip = prefs.getString(SettingsConst.DEVICE_IP);
+    int? port = prefs.getInt(SettingsConst.DEVICE_PORT);
+    String? token = prefs.getString(SettingsConst.DEVICE_TOKEN);
 
-    if (ip.isEmpty || port.isEmpty || token.isEmpty) {
+    if (ip == null || port == null || token == null) {
       return Future.error('Check connection settings');
     }
 
     final request = 'T=$target&C=$command&P=$token';
-    Socket socket = await Socket.connect(ip, int.parse(port));
+    Socket socket = await Socket.connect(ip, port);
     socket.writeln(request);
     await socket.flush();
 

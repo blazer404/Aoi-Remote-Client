@@ -1,10 +1,10 @@
+import 'package:aoi_remote/const/SettingsConst.dart';
 import 'package:aoi_remote/core/AppTheme.dart';
-import 'package:aoi_remote/core/ServerSettings.dart';
-import 'package:aoi_remote/helpers/Utils.dart';
 import 'package:aoi_remote/helpers/IpAddressInputFormatter.dart';
-import 'package:aoi_remote/widgets/ErrorDialogWidget.dart';
+import 'package:aoi_remote/helpers/Utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -16,29 +16,20 @@ class _SettingsPageState extends State<SettingsPage> {
   final TextEditingController portController = TextEditingController();
   final TextEditingController tokenController = TextEditingController();
 
+  //todo переписать на интерфейс
   Future<void> _loadSettings() async {
-    await ServerSettings.load();
-    ipController.text = ServerSettings.ip ?? '';
-    portController.text = (int.tryParse(ServerSettings.port) != null) ? ServerSettings.port : '';
-    tokenController.text = ServerSettings.token ?? '';
+    final prefs = await SharedPreferences.getInstance();
+    ipController.text = prefs.getString(SettingsConst.DEVICE_IP)!.toString();
+    portController.text = prefs.getInt(SettingsConst.DEVICE_PORT)!.toString();
+    tokenController.text = prefs.getString(SettingsConst.DEVICE_TOKEN)!.toString();
   }
 
-  void _saveSetting() {
-    final ip = ipController.text.toString();
-    final port = portController.text.toString();
-    final token = tokenController.text.toString();
-    ServerSettings.set(ip, port, token);
-    final validateResult = ServerSettings.validate();
-    if (!validateResult['success']) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return ErrorDialogWidget(errorText: validateResult['error']);
-        },
-      );
-      return;
-    }
-    ServerSettings.save();
+  //todo переписать на интерфейс + нужна валидация полей (для ip особенно)
+  Future<void> _saveSetting() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(SettingsConst.DEVICE_IP, ipController.text);
+    await prefs.setInt(SettingsConst.DEVICE_PORT, int.parse(portController.text));
+    await prefs.setString(SettingsConst.DEVICE_TOKEN, tokenController.text);
     Navigator.pop(context);
   }
 
