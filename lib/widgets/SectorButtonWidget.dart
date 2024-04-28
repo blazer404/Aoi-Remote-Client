@@ -58,10 +58,10 @@ class _SectorButtonWidgetState extends State<SectorButtonWidget> {
     final BorderRadius _borderRadius = _getBorderRadiusPosition();
 
     return Container(
-      width: widget.circleDiameter / 2.0 - 4,
-      height: widget.circleDiameter / 2.0 - 4,
+      width: widget.circleDiameter / 2.0 - 3,
+      height: widget.circleDiameter / 2.0 - 3,
       decoration: BoxDecoration(
-        color: AppTheme.controlBackgroundColor,
+        // color: AppTheme.controlBackgroundColor,
         borderRadius: _borderRadius,
       ),
       child: RawMaterialButton(

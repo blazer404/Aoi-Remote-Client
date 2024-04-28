@@ -8,10 +8,12 @@ class AimpPage extends StatefulWidget {
 class _AimpPageState extends State<AimpPage> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(20),
-      child: Center(
-        child: const Text('in progress...'),
+    return FittedBox(
+      child: Padding(
+        padding: EdgeInsets.all(20),
+        child: Center(
+          child: const Text('in progress...'),
+        ),
       ),
     );
   }

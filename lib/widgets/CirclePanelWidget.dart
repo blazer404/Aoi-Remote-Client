@@ -18,7 +18,7 @@ class CirclePanelWidget extends StatefulWidget {
 }
 
 class _CirclePanelWidgetState extends State<CirclePanelWidget> {
-  static const double circleDiameter = 350.0;
+  static const double circleDiameter = 300.0;
   static const String PLAY = 'play';
   static const String VOL_UP = 'vol_up';
   static const String VOL_DOWN = 'vol_down';
@@ -65,16 +65,6 @@ class _CirclePanelWidgetState extends State<CirclePanelWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final LinearGradient gradient = LinearGradient(
-      begin: Alignment.center,
-      end: Alignment.topRight,
-      colors: [
-        Colors.blue.withOpacity(.7),
-        Colors.purple.withOpacity(.7),
-        Colors.red.withOpacity(.7),
-      ],
-    );
-
     return Transform.rotate(
       angle: -math.pi / 4,
       child: Container(
@@ -82,7 +72,8 @@ class _CirclePanelWidgetState extends State<CirclePanelWidget> {
         height: circleDiameter,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
-          border: GradientBoxBorder(gradient: gradient, width: 4),
+          border: GradientBoxBorder(gradient: AppTheme.gradientBorder, width: 2),
+          gradient: AppTheme.gradientBackground,
         ),
         child: Stack(
           alignment: Alignment.center,
@@ -136,15 +127,15 @@ class _CirclePanelWidgetState extends State<CirclePanelWidget> {
                 angle: math.pi / 4,
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(999),
-                    border: GradientBoxBorder(gradient: gradient, width: 4),
-                    color: AppTheme.controlBackgroundColor,
-                  ),
+                      borderRadius: BorderRadius.circular(999),
+                      border: GradientBoxBorder(gradient: AppTheme.gradientBorder, width: 2),
+                      color: AppTheme.controlBackgroundColor,
+                      boxShadow: [BoxShadow(color: Colors.black45, blurRadius: 15.0, blurStyle: BlurStyle.outer)]),
                   child: CircleButtonWidget(
                     target: widget.target,
                     command: _getCommand(PLAY),
                     icon: Icons.play_arrow_outlined,
-                    iconSize: 80.0,
+                    iconSize: 75.0,
                   ),
                 ),
               ),
