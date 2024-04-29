@@ -39,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
       future: _loadSettings(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return buildPage();
+          return buildPageUI();
         } else {
           return Center(child: CircularProgressIndicator());
         }
@@ -47,7 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget buildPage() {
+  Widget buildPageUI() {
     return Scaffold(
       appBar: AppBar(title: Text('Settings')),
       body: Padding(
@@ -84,12 +84,13 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 ElevatedButton(
                   onPressed: _saveSetting,
+                  style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(AppTheme.greyDarkColor)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.save_outlined, color: AppTheme.textColor, size: 20),
+                      Icon(Icons.save_outlined, color: AppTheme.greyColor, size: 20),
                       SizedBox(width: 8),
-                      Text('Save', style: TextStyle(color: AppTheme.textColor)),
+                      Text('Save', style: TextStyle(color: AppTheme.greyColor)),
                     ],
                   ),
                 ),

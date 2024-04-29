@@ -6,7 +6,6 @@ import 'package:aoi_remote/core/AppTheme.dart';
 import 'package:aoi_remote/widgets/CircleButtonWidget.dart';
 import 'package:aoi_remote/widgets/SectorButtonWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class CirclePanelWidget extends StatefulWidget {
   final String target;
@@ -19,6 +18,7 @@ class CirclePanelWidget extends StatefulWidget {
 
 class _CirclePanelWidgetState extends State<CirclePanelWidget> {
   static const double circleDiameter = 300.0;
+
   static const String PLAY = 'play';
   static const String VOL_UP = 'vol_up';
   static const String VOL_DOWN = 'vol_down';
@@ -72,8 +72,8 @@ class _CirclePanelWidgetState extends State<CirclePanelWidget> {
         height: circleDiameter,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
-          border: GradientBoxBorder(gradient: AppTheme.gradientBorder, width: 2),
-          gradient: AppTheme.gradientBackground,
+          border: AppTheme.gradientCircleBorder,
+          color: AppTheme.greyDarkColor,
         ),
         child: Stack(
           alignment: Alignment.center,
@@ -127,10 +127,11 @@ class _CirclePanelWidgetState extends State<CirclePanelWidget> {
                 angle: math.pi / 4,
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(999),
-                      border: GradientBoxBorder(gradient: AppTheme.gradientBorder, width: 2),
-                      color: AppTheme.controlBackgroundColor,
-                      boxShadow: [BoxShadow(color: Colors.black45, blurRadius: 15.0, blurStyle: BlurStyle.outer)]),
+                    borderRadius: BorderRadius.circular(999),
+                    border: AppTheme.gradientBorder,
+                    color: AppTheme.greyDarkColor,
+                    boxShadow: [BoxShadow(color: Colors.black45, blurRadius: 15.0, blurStyle: BlurStyle.outer)],
+                  ),
                   child: CircleButtonWidget(
                     target: widget.target,
                     command: _getCommand(PLAY),

@@ -17,7 +17,7 @@ class CircleButtonWidget extends StatefulWidget {
     required this.command,
     this.icon = Icons.error,
     this.iconSize = 40.0,
-    this.iconColor = AppTheme.textColor,
+    this.iconColor = AppTheme.greyColor,
   });
 
   @override

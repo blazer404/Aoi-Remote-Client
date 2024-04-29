@@ -58,8 +58,8 @@ class _SectorButtonWidgetState extends State<SectorButtonWidget> {
     final BorderRadius _borderRadius = _getBorderRadiusPosition();
 
     return Container(
-      width: widget.circleDiameter / 2.0 - 3,
-      height: widget.circleDiameter / 2.0 - 3,
+      width: widget.circleDiameter / 2.0,
+      height: widget.circleDiameter / 2.0,
       decoration: BoxDecoration(
         // color: AppTheme.controlBackgroundColor,
         borderRadius: _borderRadius,
@@ -74,7 +74,7 @@ class _SectorButtonWidgetState extends State<SectorButtonWidget> {
           angle: 7 * -math.pi / 4,
           child: Icon(
             widget.icon,
-            color: AppTheme.textColor,
+            color: AppTheme.greyColor,
             size: 50.0,
           ),
         ),

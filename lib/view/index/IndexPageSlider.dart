@@ -13,9 +13,18 @@ class IndexPageSlider extends StatefulWidget {
 
 class _IndexPageSliderState extends State<IndexPageSlider> {
   int currentPage = 0;
-  final List<Widget> pages = [MpcPage(), AimpPage()];
-  final List<String> titles = [MpcConst.TITLE, AimpConst.TITLE];
-  final List<String> icons = [MpcConst.ICON, AimpConst.ICON];
+  final List<Widget> pages = [
+    MpcPage(),
+    AimpPage(),
+  ];
+  final List<String> titles = [
+    MpcConst.TITLE,
+    AimpConst.TITLE,
+  ];
+  final List<String> icons = [
+    MpcConst.ICON,
+    AimpConst.ICON,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +50,7 @@ class _IndexPageSliderState extends State<IndexPageSlider> {
               margin: EdgeInsets.symmetric(horizontal: 4.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: currentPage == index ? AppTheme.accentColor : AppTheme.textColor.withOpacity(.5),
+                color: currentPage == index ? AppTheme.greenColor : AppTheme.greyColor.withOpacity(.5),
               ),
             ),
           ),

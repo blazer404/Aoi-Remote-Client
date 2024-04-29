@@ -18,6 +18,7 @@ class _IndexPageState extends State<IndexPage> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: systemTheme,
       child: MaterialApp(
+        title: 'Aoi Remote',
         home: IndexPageSlider(),
         theme: AppTheme.theme,
         scrollBehavior: ScrollConfiguration.of(context).copyWith(overscroll: false),

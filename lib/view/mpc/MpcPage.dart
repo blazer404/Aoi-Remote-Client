@@ -3,7 +3,6 @@ import 'package:aoi_remote/core/AppTheme.dart';
 import 'package:aoi_remote/widgets/CircleButtonWidget.dart';
 import 'package:aoi_remote/widgets/CirclePanelWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class MpcPage extends StatefulWidget {
   @override
@@ -62,13 +61,13 @@ class _MpcPageState extends State<MpcPage> {
                   children: [
                     Column(
                       children: [
-                        Text('sub'.toUpperCase()),
+                        Text('sub'.toUpperCase(), style: TextStyle(color: AppTheme.greyColor)),
                         SizedBox(height: 10),
                         Container(
                           decoration: BoxDecoration(
-                            color: AppTheme.controlBackgroundColor,
+                            color: AppTheme.greyDarkColor,
+                            border: AppTheme.gradientBorder,
                             borderRadius: BorderRadius.circular(999),
-                            border: GradientBoxBorder(gradient: AppTheme.gradientBorder, width: 2),
                           ),
                           child: Row(
                             children: [
@@ -98,13 +97,13 @@ class _MpcPageState extends State<MpcPage> {
                     SizedBox(width: 20),
                     Column(
                       children: [
-                        Text('audio'.toUpperCase()),
+                        Text('audio'.toUpperCase(), style: TextStyle(color: AppTheme.greyColor)),
                         SizedBox(height: 10),
                         Container(
                           decoration: BoxDecoration(
-                            color: AppTheme.controlBackgroundColor,
+                            color: AppTheme.greyDarkColor,
+                            border: AppTheme.gradientBorder,
                             borderRadius: BorderRadius.circular(999),
-                            border: GradientBoxBorder(gradient: AppTheme.gradientBorder, width: 2),
                           ),
                           child: Row(
                             children: [
@@ -142,14 +141,14 @@ class _MpcPageState extends State<MpcPage> {
                   children: [
                     Column(
                       children: [
-                        Text('jump'.toUpperCase()),
+                        Text('jump'.toUpperCase(), style: TextStyle(color: AppTheme.greyColor)),
                         SizedBox(height: 10),
                         Container(
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                            color: AppTheme.controlBackgroundColor,
+                            color: AppTheme.greyDarkColor,
+                            border: AppTheme.gradientBorder,
                             borderRadius: BorderRadius.circular(999),
-                            border: GradientBoxBorder(gradient: AppTheme.gradientBorder, width: 2),
                           ),
                           child: Row(
                             children: [
