@@ -1,10 +1,10 @@
-import 'package:aoi_remote/const/SettingsConst.dart';
 import 'package:aoi_remote/core/AppTheme.dart';
+import 'package:aoi_remote/core/Settings.dart';
 import 'package:aoi_remote/helpers/IpAddressInputFormatter.dart';
 import 'package:aoi_remote/helpers/Utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -12,31 +12,39 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController ipController = TextEditingController();
   final TextEditingController portController = TextEditingController();
   final TextEditingController tokenController = TextEditingController();
 
-  //todo переписать на интерфейс
-  Future<void> _loadSettings() async {
-    final prefs = await SharedPreferences.getInstance();
-    ipController.text = prefs.getString(SettingsConst.DEVICE_IP)!.toString();
-    portController.text = prefs.getInt(SettingsConst.DEVICE_PORT)!.toString();
-    tokenController.text = prefs.getString(SettingsConst.DEVICE_TOKEN)!.toString();
+  static const String nameControllerLabel = 'Device name';
+  static const String ipControllerLabel = 'IP Address';
+  static const String portControllerLabel = 'Port';
+  static const String tokenControllerLabel = 'Auth token';
+
+  Future<void> _loadDevice() async {
+    Settings.loadDevice().then((value) {
+      nameController.text = value['name'];
+      ipController.text = value['ip'];
+      portController.text = value['port'];
+      tokenController.text = value['token'];
+    });
   }
 
-  //todo переписать на интерфейс + нужна валидация полей (для ip особенно)
-  Future<void> _saveSetting() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(SettingsConst.DEVICE_IP, ipController.text);
-    await prefs.setInt(SettingsConst.DEVICE_PORT, int.parse(portController.text));
-    await prefs.setString(SettingsConst.DEVICE_TOKEN, tokenController.text);
-    Navigator.pop(context);
+  Future<void> _saveDevice() async {
+    final Map<String, dynamic> data = {
+      'name': nameController.text,
+      'ip': ipController.text,
+      'port': portController.text,
+      'token': tokenController.text,
+    };
+    Settings.saveDevice(data).then((value) => Navigator.pop(context));
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _loadSettings(),
+      future: _loadDevice(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return buildPageUI();
@@ -56,6 +64,10 @@ class _SettingsPageState extends State<SettingsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
+              controller: nameController,
+              decoration: InputDecoration(labelText: nameControllerLabel),
+            ),
+            TextField(
               controller: ipController,
               inputFormatters: [
                 LengthLimitingTextInputFormatter(15),
@@ -63,11 +75,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 IpAddressInputFormatter()
               ],
               keyboardType: TextInputType.numberWithOptions(decimal: true),
-              decoration: InputDecoration(labelText: 'IP Address'),
+              decoration: InputDecoration(labelText: ipControllerLabel),
             ),
             TextField(
               controller: portController,
-              decoration: InputDecoration(labelText: 'Port'),
+              decoration: InputDecoration(labelText: portControllerLabel),
               inputFormatters: [
                 LengthLimitingTextInputFormatter(5),
                 Utils.decimalFilter(),
@@ -76,14 +88,17 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             TextField(
               controller: tokenController,
-              decoration: InputDecoration(labelText: 'Auth token'),
+              decoration: InputDecoration(labelText: tokenControllerLabel),
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton(
-                  onPressed: _saveSetting,
+                  onPressed: () => {
+                    Vibrate.feedback(FeedbackType.medium),
+                    _saveDevice(),
+                  },
                   style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(AppTheme.backgroundColor)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
