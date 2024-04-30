@@ -4,7 +4,7 @@ import 'package:aoi_remote/widgets/ErrorDialogWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 
-class CircleButtonWidget extends StatefulWidget {
+class CircleButtonWidget extends StatelessWidget {
   final String target;
   final int command;
   final IconData icon;
@@ -17,38 +17,32 @@ class CircleButtonWidget extends StatefulWidget {
     required this.command,
     this.icon = Icons.error,
     this.iconSize = 40.0,
-    this.iconColor = AppTheme.greyColor,
+    this.iconColor = AppTheme.textColor,
   });
 
-  @override
-  _CircleButtonWidgetWidgetState createState() => _CircleButtonWidgetWidgetState();
-}
+  void _sendCommand(BuildContext context) {
+    SocketClient.sendCommand(target, command).catchError((error) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return ErrorDialogWidget(errorText: error.toString());
+        },
+      );
+    });
+  }
 
-class _CircleButtonWidgetWidgetState extends State<CircleButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    final buttonSize = widget.iconSize + 10;
-
-    void _sendCommand() {
-      SocketClient.sendCommand(widget.target, widget.command).catchError((error) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return ErrorDialogWidget(errorText: error.toString());
-          },
-        );
-      });
-    }
+    final buttonSize = iconSize + 10;
 
     return RawMaterialButton(
       onPressed: () => {
         Vibrate.feedback(FeedbackType.medium),
-        _sendCommand(),
+        _sendCommand(context),
       },
       shape: const CircleBorder(),
       constraints: BoxConstraints(minWidth: buttonSize, minHeight: buttonSize),
-      focusColor: Colors.transparent,
-      child: Icon(widget.icon, color: widget.iconColor, size: widget.iconSize),
+      child: Icon(icon, color: iconColor, size: iconSize),
     );
   }
 }

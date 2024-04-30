@@ -84,13 +84,13 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 ElevatedButton(
                   onPressed: _saveSetting,
-                  style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(AppTheme.greyDarkColor)),
+                  style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(AppTheme.backgroundColor)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.save_outlined, color: AppTheme.greyColor, size: 20),
+                      Icon(Icons.save_outlined, color: AppTheme.textColor, size: 20),
                       SizedBox(width: 8),
-                      Text('Save', style: TextStyle(color: AppTheme.greyColor)),
+                      Text('Save', style: TextStyle(color: AppTheme.textColor)),
                     ],
                   ),
                 ),

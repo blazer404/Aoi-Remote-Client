@@ -6,7 +6,7 @@ import 'package:aoi_remote/widgets/ErrorDialogWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 
-class SectorButtonWidget extends StatefulWidget {
+class SectorButtonWidget extends StatelessWidget {
   final String target;
   final int command;
   final IconData icon;
@@ -21,14 +21,9 @@ class SectorButtonWidget extends StatefulWidget {
     required this.borderRadiusPosition,
   });
 
-  @override
-  _SectorButtonWidgetState createState() => _SectorButtonWidgetState();
-}
-
-class _SectorButtonWidgetState extends State<SectorButtonWidget> {
   BorderRadius _getBorderRadiusPosition() {
     final Radius radius = Radius.circular(999);
-    switch (widget.borderRadiusPosition) {
+    switch (borderRadiusPosition) {
       case 'topLeft':
         return BorderRadius.only(topLeft: radius);
       case 'topRight':
@@ -42,8 +37,8 @@ class _SectorButtonWidgetState extends State<SectorButtonWidget> {
     }
   }
 
-  void _sendCommand() {
-    SocketClient.sendCommand(widget.target, widget.command).catchError((error) {
+  void _sendCommand(BuildContext context) {
+    SocketClient.sendCommand(target, command).catchError((error) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -55,28 +50,22 @@ class _SectorButtonWidgetState extends State<SectorButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final BorderRadius _borderRadius = _getBorderRadiusPosition();
+    final BorderRadius borderRadius = _getBorderRadiusPosition();
+    final double sideSize = circleDiameter / 2.0 - AppTheme.gradientBorderWidth;
 
     return Container(
-      width: widget.circleDiameter / 2.0,
-      height: widget.circleDiameter / 2.0,
-      decoration: BoxDecoration(
-        // color: AppTheme.controlBackgroundColor,
-        borderRadius: _borderRadius,
-      ),
+      width: sideSize,
+      height: sideSize,
+      decoration: BoxDecoration(borderRadius: borderRadius),
       child: RawMaterialButton(
         onPressed: () => {
           Vibrate.feedback(FeedbackType.medium),
-          _sendCommand(),
+          _sendCommand(context),
         },
-        shape: RoundedRectangleBorder(borderRadius: _borderRadius),
+        shape: RoundedRectangleBorder(borderRadius: borderRadius),
         child: Transform.rotate(
           angle: 7 * -math.pi / 4,
-          child: Icon(
-            widget.icon,
-            color: AppTheme.greyColor,
-            size: 50.0,
-          ),
+          child: Icon(icon, color: AppTheme.textColor, size: 50.0),
         ),
       ),
     );

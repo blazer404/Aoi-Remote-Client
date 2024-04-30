@@ -36,6 +36,7 @@ class _IndexPageSliderState extends State<IndexPageSlider> {
           setState(() {
             currentPage = index;
           });
+          //todo запонить последнюю выбранную страницу
         },
       ),
       bottomNavigationBar: Container(
@@ -50,7 +51,7 @@ class _IndexPageSliderState extends State<IndexPageSlider> {
               margin: EdgeInsets.symmetric(horizontal: 4.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: currentPage == index ? AppTheme.greenColor : AppTheme.greyColor.withOpacity(.5),
+                color: currentPage == index ? AppTheme.primaryAccentColor : AppTheme.textColor,
               ),
             ),
           ),

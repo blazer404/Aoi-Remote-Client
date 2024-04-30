@@ -7,13 +7,13 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.black,
   );
 
-  static const Color greenColor = Color.fromRGBO(76, 175, 80, 1.0);
-  static const Color greenLightColor = Color.fromRGBO(139, 195, 74, 1.0);
-  static const Color greyColor = Color.fromRGBO(150, 150, 150, 1.0);
-  static const Color greyDarkColor = Color.fromRGBO(30, 30, 30, 1.0);
+  static const Color textColor = Color.fromRGBO(150, 150, 150, 1.0);
+  static const Color backgroundColor = Color.fromRGBO(30, 30, 30, 1.0);
+  static final Color primaryAccentColor = Colors.blue.withOpacity(.8);
+  static final Color secondaryAccentColor = Colors.purple.withOpacity(.8);
 
   static const double gradientBorderWidth = 2.0;
-  static final List<Color> gradientBorderColors = [Colors.blue.withOpacity(.8), Colors.purple.withOpacity(.8)];
+  static final List<Color> gradientBorderColors = [primaryAccentColor, secondaryAccentColor];
   static final GradientBoxBorder gradientBorder = GradientBoxBorder(
     gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: gradientBorderColors),
     width: gradientBorderWidth,
