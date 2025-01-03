@@ -15,7 +15,7 @@ class _IndexPageSliderState extends State<IndexPageSlider> {
   int currentPage = 0;
   final List<Widget> pages = [
     MpcPage(),
-    AimpPage(),
+    // AimpPage(), //todo раскоментировать когда будет подключен AIMP
   ];
   final List<String> titles = [
     MpcConst.TITLE,
@@ -39,24 +39,25 @@ class _IndexPageSliderState extends State<IndexPageSlider> {
           //todo запонить последнюю выбранную страницу
         },
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(vertical: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(
-            pages.length,
-            (index) => Container(
-              width: 6.0,
-              height: 6.0,
-              margin: EdgeInsets.symmetric(horizontal: 4.0),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: currentPage == index ? AppTheme.primaryAccentColor : AppTheme.textColor,
-              ),
-            ),
-          ),
-        ),
-      ),
+      //todo раскоментировать когда будет подключен AIMP
+      // bottomNavigationBar: Container(
+      //   padding: EdgeInsets.symmetric(vertical: 10),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: List.generate(
+      //       pages.length,
+      //       (index) => Container(
+      //         width: 6.0,
+      //         height: 6.0,
+      //         margin: EdgeInsets.symmetric(horizontal: 4.0),
+      //         decoration: BoxDecoration(
+      //           shape: BoxShape.circle,
+      //           color: currentPage == index ? AppTheme.primaryAccentColor : AppTheme.textColor,
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

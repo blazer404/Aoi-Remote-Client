@@ -4,7 +4,7 @@ import 'package:aoi_remote/helpers/IpAddressInputFormatter.dart';
 import 'package:aoi_remote/helpers/Utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vibrate/flutter_vibrate.dart';
+// import 'package:flutter_vibrate/flutter_vibrate.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -96,7 +96,7 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 ElevatedButton(
                   onPressed: () => {
-                    Vibrate.feedback(FeedbackType.medium),
+                    // Vibrate.feedback(FeedbackType.medium),
                     _saveDevice(),
                   },
                   style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(AppTheme.backgroundColor)),

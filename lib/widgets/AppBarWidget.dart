@@ -1,6 +1,6 @@
 import 'package:aoi_remote/view/settings/SettingsPage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vibrate/flutter_vibrate.dart';
+// import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:keep_screen_on/keep_screen_on.dart';
 
 class AppBarWidget extends StatefulWidget implements PreferredSizeWidget {
@@ -114,7 +114,7 @@ class _AppBarWidgetState extends State<AppBarWidget> with WidgetsBindingObserver
           icon: _keepScreenIcon,
           color: _keepScreenColor,
           onPressed: () {
-            Vibrate.feedback(FeedbackType.medium);
+            // Vibrate.feedback(FeedbackType.medium);
             _keepScreenToggle();
           },
         ),
