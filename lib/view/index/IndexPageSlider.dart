@@ -15,7 +15,7 @@ class _IndexPageSliderState extends State<IndexPageSlider> {
   int currentPage = 0;
   final List<Widget> pages = [
     MpcPage(),
-    AimpPage(),
+    // AimpPage(), //todo раскомментировать при добавлении страницы для Aimp
   ];
   final List<String> titles = [
     MpcConst.TITLE,
@@ -39,7 +39,8 @@ class _IndexPageSliderState extends State<IndexPageSlider> {
           //todo запонить последнюю выбранную страницу
         },
       ),
-      bottomNavigationBar: Container(
+      //todo раскомментировать при добавлении страницы для Aimp
+      /*bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +57,7 @@ class _IndexPageSliderState extends State<IndexPageSlider> {
             ),
           ),
         ),
-      ),
+      ),*/
     );
   }
 }
